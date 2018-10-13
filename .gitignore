@@ -1,5 +1,9 @@
 
-.idea/
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
+.idea/modules.xml
+.idea/libraries/
 
 lib/
 
