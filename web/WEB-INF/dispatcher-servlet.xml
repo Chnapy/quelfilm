@@ -11,8 +11,10 @@
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
     <!--<context:annotation-config />-->
-    <context:component-scan base-package="spring.controller"/>
+
+    <context:component-scan base-package="main"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>

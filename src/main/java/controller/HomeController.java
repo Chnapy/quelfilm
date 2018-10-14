@@ -1,5 +1,6 @@
-package spring.controller;
+package main.java.controller;
 
+import main.java.model.db.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -7,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import spring.model.User;
 
 @RestController
 public class HomeController {
@@ -24,7 +24,7 @@ public class HomeController {
 //
 //        model.addAttribute("serverTime", formattedDate);
         var user = new User();
-        user.setUserName("toto");
+        user.setUsername("toto");
         return ResponseEntity.ok(user);
 
     }
@@ -32,7 +32,7 @@ public class HomeController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String user(@Validated User user, Model model) {
         System.out.println("User Page Requested");
-        model.addAttribute("userName", user.getUserName());
+        model.addAttribute("username", user.getUsername());
         return "user";
     }
 
