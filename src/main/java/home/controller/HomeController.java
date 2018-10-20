@@ -1,4 +1,4 @@
-package main.java.controller;
+package main.java.home.controller;
 
 import main.java.model.db.User;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<User> home() {
-        System.out.println("Home Page Requested, locale = " );
+        System.out.println("Home Page Requested, locale = ");
 
 //        Date date = new Date();
 //        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

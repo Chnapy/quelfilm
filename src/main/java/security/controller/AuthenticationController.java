@@ -1,10 +1,11 @@
-package main.java.controller;
+package main.java.security.controller;
 
-import main.java.model.AuthenticationRequest;
-import main.java.model.JwtTokens;
-import main.java.model.RefreshRequest;
-import main.java.service.JwtTokenService;
+import main.java.security.model.AuthenticationRequest;
+import main.java.security.model.JwtTokens;
+import main.java.security.model.RefreshRequest;
+import main.java.security.service.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     @Autowired
+    @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -30,7 +32,7 @@ public class AuthenticationController {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationRequest.username, authenticationRequest.password);
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-        if(authentication != null && authentication.isAuthenticated()) {
+        if (authentication != null && authentication.isAuthenticated()) {
             JwtTokens tokens = jwtTokenService.createTokens(authentication);
             return ResponseEntity.ok().body(tokens);
         }

@@ -9,9 +9,10 @@
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd"
 >
 
-    <http auto-config="true" use-expressions="true">
+    <http auto-config="true" use-expressions="true" create-session="stateless">
 
         <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <http-basic/>
         <!--<intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>-->
 
         <!--<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>-->
@@ -37,17 +38,15 @@
 
     <!--<beans:bean id="authenticationFailureHandler" name="customAuthenticationFaiureHandler" class="org.baeldung.security.CustomAuthenticationFailureHandler"/>-->
 
-    <authentication-manager>
+    <authentication-manager alias="authenticationManager">
         <authentication-provider>
             <user-service>
-                <user name="user1" password="user1Pass" authorities="ROLE_USER" />
+                <user name="user1" password="user1Pass" authorities="ROLE_USER"/>
             </user-service>
-            <password-encoder ref="encoder" />
+            <password-encoder ref="encoder"/>
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="encoder"
-                class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-    </beans:bean>
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans:beans>

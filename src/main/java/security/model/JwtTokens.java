@@ -1,4 +1,4 @@
-package main.java.model;
+package main.java.security.model;
 
 public class JwtTokens {
 
