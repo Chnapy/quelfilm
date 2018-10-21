@@ -1,6 +1,8 @@
 package main.java.home.controller;
 
-import main.java.model.db.User;
+import main.java.db.User;
+import main.java.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
@@ -9,23 +11,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 public class HomeController {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<User> home() {
         System.out.println("Home Page Requested, locale = ");
 
-//        Date date = new Date();
-//        DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-//
-//        String formattedDate = dateFormat.format(date);
-//
-//        model.addAttribute("serverTime", formattedDate);
-        var user = new User();
-        user.setUsername("toto");
-        return ResponseEntity.ok(user);
+        var user = this.userRepository.findById(1L);
+
+        return ResponseEntity.ok(user.orElse(new User()));
 
     }
 
